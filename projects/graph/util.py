@@ -26,3 +26,19 @@ class Stack():
     def size(self):
         return len(self.stack)
 
+#LL:
+#
+#cur = head
+#while cur is not None:
+#    print(cur)
+#    cur = cur.next
+#
+#
+#Binary Tree:
+#
+#traverse(node):
+#    if node is None: return
+#
+#    traverse(node.left)
+#    print(node)
+#    traverse(node.right)
