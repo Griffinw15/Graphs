@@ -41,34 +41,6 @@ class Node:  # Graph Node
 	def __repr__(self):
 		return f'Node({repr(self.value)})'
 
-def bft(node):
-	# Create a queue to hold nodes to visit
-	to_visit = Queue()
-
-	# Create a set to hold visited nodes
-	visited = set()
-
-	# Initalize: add the starting node to the queue
-	to_visit.enqueue(node)
-
-	# While queue not empty:
-	while to_visit.size() > 0:
-		# dequeue first entry
-		v = to_visit.dequeue()
-
-		# if not visited:
-		if v not in visited:
-			# Visit the node (print it out)
-			print(v)
-
-			# Add it to the visited set
-			visited.add(v)
-
-			# enqueue all its neighbors
-			for n in v.neighbors:
-				#print(f"Adding: {n}")
-				to_visit.enqueue(n)
-
 def dft(node):
 	# Create a stack to hold nodes to visit
 	to_visit = Stack()
@@ -96,6 +68,34 @@ def dft(node):
 			for n in v.neighbors:
 				#print(f"Adding: {n}")
 				to_visit.push(n)
+
+def bft(node):
+	# Create a queue to hold nodes to visit
+	to_visit = Queue()
+
+	# Create a set to hold visited nodes
+	visited = set()
+
+	# Initalize: add the starting node to the queue
+	to_visit.enqueue(node)
+
+	# While queue not empty:
+	while to_visit.size() > 0:
+		# dequeue first entry
+		v = to_visit.dequeue()
+
+		# if not visited:
+		if v not in visited:
+			# Visit the node (print it out)
+			print(v)
+
+			# Add it to the visited set
+			visited.add(v)
+
+			# enqueue all its neighbors
+			for n in v.neighbors:
+				#print(f"Adding: {n}")
+				to_visit.enqueue(n)
 
 """
 def dft_recursive(node):

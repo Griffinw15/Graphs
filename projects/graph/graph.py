@@ -37,26 +37,26 @@ class Graph:
         """
         # Create a queue to hold nodes to visit
 	    to_visit = Queue()
-    
+
 	    # Create a set to hold visited nodes
 	    visited = set()
-    
+
 	    # Initalize: add the starting node to the queue
 	    to_visit.enqueue(node)
-    
+
 	    # While queue not empty:
 	    while to_visit.size() > 0:
 	    	# dequeue first entry
 	    	v = to_visit.dequeue()
-    
+
 	    	# if not visited:
 	    	if v not in visited:
 	    		# Visit the node (print it out)
 	    		print(v)
-    
+
 	    		# Add it to the visited set
 	    		visited.add(v)
-    
+
 	    		# enqueue all its neighbors
 	    		for n in v.neighbors:
 	    			#print(f"Adding: {n}")
@@ -94,14 +94,24 @@ class Graph:
 	    			#print(f"Adding: {n}")
 	    			to_visit.push(n)
 
-    def dft_recursive(self, starting_vertex):
+        #return visited
+
+    def dft_recursive(self, starting_vertex, storage):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+        storage = set()
+
+        print(starting_vertex)
+
+        storage.add(starting_vertex)
+
+        for i in self.get_neighbors(starting_vertex):
+            if i not in storage:
+                self.dft_recursive(starting_vertex=i, storage=storage)
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -109,7 +119,26 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        q = Queue()
+
+        storage = set()
+
+        q.enqueue([starting_vertex])
+
+        while q.size() >= 1:
+
+            path = q.dequeue()
+            x = path[-1]
+            #head = q[0]
+
+            if x not in storage:
+                storage.add(x)
+
+                if x == destination_vertex:
+                    return path
+                
+                for i in self.get_neighbors(x):
+                    q.enqueue(path + [neighbor])
 
     def dfs(self, starting_vertex, destination_vertex):
         """
